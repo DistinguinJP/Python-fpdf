@@ -1,0 +1,18 @@
+import sqlite3
+
+conn = sqlite3.connect('ma_base.sqlite3')
+cursor = conn.cursor()
+cursor.execute("DROP TABLE IF EXISTS tMOIS")
+sql = """CREATE TABLE tMOIS(        
+         `MOIS`	TEXT
+ )"""
+cursor.execute(sql)
+# Validation des changements
+conn.commit()
+conn.close()
+conn = sqlite3.connect('ma_base.sqlite3')
+cursor = conn.cursor()
+moisi = [("Janvier",), ("Février",), ("Mars",), ("Avril",),("Mai",), ("Juin",), ("Juillet",), ("Aout",), ("Septembre",), ("Octobre",), ("Novembre",), ("Décembre",), ("Inconnu",)]
+
+cursor.executemany("INSERT INTO tMOIS (MOIS) VALUES(?)",moisi)
+conn.commit()
