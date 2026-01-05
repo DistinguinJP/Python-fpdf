@@ -1,13 +1,11 @@
 import sqlite3
 import string
-from cheminBD import bazi
-from fpdf import FPDF, XPos, YPos
+from fpdf import FPDF
 
-# Nombre enregistrement tVIL
-connection = sqlite3.connect(bazi)
+# Nombre enregistrement tMOIS
+connection = sqlite3.connect(ma_base.sqlite3)
 cursor = connection.cursor()
-#cursor.execute("SELECT COUNT(*) FROM tMOIS")
-cursor.execute("SELECT COUNT(*) FROM tVIL")
+cursor.execute("SELECT COUNT(*) FROM tMOIS")
 nb = cursor.fetchone()[0] # nb d'éléments
 print(nb)
 b = nb // 3 # nb de lignes
@@ -17,8 +15,7 @@ print(a)
 cursor.close()
 con = sqlite3.connect(bazi)
 cursor = con.cursor()
-#cursor.execute("SELECT MOIS FROM tMOIS")
-cursor.execute("SELECT vilNOM FROM tVIL order by vilNOM")
+cursor.execute("SELECT MOIS FROM tMOIS")
 data = cursor.fetchall()
 #print("le type de data est: " + str((type(data))))
 #print(data)
